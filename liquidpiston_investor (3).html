@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiquidPiston - Investor Information</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #0a0e27;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 4px solid #00d4ff;
+        }
+        
+        .logo {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: white;
+            font-size: 2em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .header p {
+            color: #00d4ff;
+            font-size: 1.3em;
+            font-weight: 300;
+        }
+        
+        .content {
+            padding: 60px 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .welcome-section {
+            margin-bottom: 60px;
+        }
+        
+        .welcome-section h2 {
+            color: #0a0e27;
+            font-size: 2em;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .welcome-section > p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-left: 5px solid #00d4ff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+        
+        .info-box h3 {
+            color: #0a0e27;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+        
+        .info-box p {
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 1em;
+        }
+        
+        .info-box a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .info-box a:hover {
+            color: #0099cc;
+            text-decoration: underline;
+        }
+        
+        .contact-section {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        
+        .contact-section h4 {
+            color: #0a0e27;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .contact-people {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-top: 15px;
+        }
+        
+        .contact-person {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .linkedin-icon {
+            width: 24px;
+            height: 24px;
+            fill: #0077b5;
+        }
+        
+        .contact-person a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #0077b5;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .contact-person a:hover {
+            color: #005885;
+        }
+        
+        .form-section {
+            margin-top: 60px;
+            padding-top: 60px;
+            border-top: 3px solid #e9ecef;
+        }
+        
+        .form-section h2 {
+            color: #0a0e27;
+            font-size: 2em;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-align: center;
+        }
+        
+        form {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #0a0e27;
+            font-size: 1em;
+        }
+        
+        .required {
+            color: #dc3545;
+        }
+        
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            border: 2px solid #dee2e6;
+        }
+        
+        input[type="checkbox"] {
+            margin-top: 4px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        
+        .checkbox-label {
+            font-weight: normal;
+            color: #333;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+        
+        .checkbox-label a {
+            color: #00d4ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .checkbox-label a:hover {
+            text-decoration: underline;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.3s;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 212, 255, 0.4);
+        }
+        
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .footer {
+            background: #0a0e27;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .header p {
+                font-size: 1.1em;
+            }
+            
+            .content {
+                padding: 40px 20px;
+            }
+            
+            .welcome-section h2,
+            .form-section h2 {
+                font-size: 1.6em;
+            }
+            
+            form {
+                padding: 30px 20px;
+            }
+            
+            .contact-people {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://cdn.prod.website-files.com/629bdffe33cf8079204ab7a8/629be578ab109bb52379725d_lp-logo.svg" alt="LiquidPiston Logo" class="logo">
+            <h1>Investor Information Portal</h1>
+            <p>Welcome MIT Venture Mentoring Service</p>
+        </div>
+        
+        <div class="content">
+            <div class="welcome-section">
+                <h2>Welcome to LiquidPiston</h2>
+                <p>Thank you for your interest in LiquidPiston. We're excited to connect with potential investors and partners who share our vision for revolutionary engine technology that's transforming multiple industries.</p>
+                
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h3>Learn About Our Company</h3>
+                        <p>Discover our innovative X-Engine technology, revolutionary thermodynamic cycle, and how we're disrupting the combustion engine market with engines that are up to 10X more powerful and efficient than traditional designs.</p>
+                        <p><a href="https://liquidpiston.com" target="_blank">Visit liquidpiston.com →</a></p>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3>Crowdfunding Investment Opportunities</h3>
+                        <p>Join over 17,500 investors who have already invested in LiquidPiston. Register to receive notifications about future crowdfunding investment opportunities and be among the first to participate in our ongoing growth.</p>
+                        <p><a href="https://invest.liquidpiston.com" target="_blank">Register at invest.liquidpiston.com →</a></p>
+                    </div>
+                    
+                    <div class="info-box">
+                        <h3>Private Investment & Partnership Opportunities</h3>
+                        <p>For private investment opportunities with a minimum investment of $50,000, or if you have potential partners to introduce us to, we'd love to hear from you.</p>
+                        
+                        <div class="contact-section">
+                            <h4>Contact Us:</h4>
+                            <p><strong>Email:</strong> <a href="mailto:partners@liquidpiston.com">partners@liquidpiston.com</a></p>
+                            <p><strong>Schedule a Meeting:</strong> <a href="https://calendly.com/liquidpiston/30-min" target="_blank">Book a 30-minute call →</a></p>
+                            
+                            <p style="margin-top: 15px; margin-bottom: 10px;"><strong>Your message will reach:</strong></p>
+                            
+                            <div class="contact-people">
+                                <div class="contact-person">
+                                    <a href="https://www.linkedin.com/in/alecshkolnik/" target="_blank">
+                                        <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                        </svg>
+                                        Alec Shkolnik, PhD (CEO)
+                                    </a>
+                                </div>
+                                
+                                <div class="contact-person">
+                                    <a href="https://www.linkedin.com/in/psuneby/" target="_blank">
+                                        <svg class="linkedin-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                        </svg>
+                                        Per Suneby (Sr VP of Corp Dev)
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <h2>Register Your Interest</h2>
+                
+                <form id="investorForm">
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="accredited" name="accredited" required>
+                            <label for="accredited" class="checkbox-label">
+                                I confirm that I am an SEC accredited investor. <a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/updated-3" target="_blank">Learn about accredited investor requirements</a>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message (Optional)</label>
+                        <textarea id="message" name="message" placeholder="Tell us about your investment interests, potential partnerships, or any questions you may have..."></textarea>
+                    </div>
+                    
+                    <button type="submit">Submit Interest</button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 LiquidPiston, Inc. | Transforming the Future of Combustion Engines</p>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('investorForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                accredited: document.getElementById('accredited').checked,
+                message: document.getElementById('message').value
+            };
+            
+            const subject = encodeURIComponent('Investor Interest - MIT VMS');
+            const body = encodeURIComponent(
+                `New Investor Interest Submission
+
+Full Name: ${formData.fullName}
+Email: ${formData.email}
+SEC Accredited Investor: ${formData.accredited ? 'Yes' : 'No'}
+
+Message:
+${formData.message || 'No message provided'}
+
+---
+Submitted from MIT VMS Investor Portal`
+            );
+            
+            window.location.href = `mailto:partners@liquidpiston.com?subject=${subject}&body=${body}`;
+            
+            alert('Thank you for your interest! Your default email client will open to send your information to partners@liquidpiston.com');
+        });
+    </script>
+</body>
+</html>
